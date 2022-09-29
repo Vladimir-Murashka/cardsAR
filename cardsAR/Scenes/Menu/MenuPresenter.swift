@@ -7,7 +7,9 @@
 
 // MARK: - MenuPresenterProtocol
 
-protocol MenuPresenterProtocol: AnyObject {}
+protocol MenuPresenterProtocol: AnyObject {
+    func startButtonPressed()
+}
 
 // MARK: - MenuPresenter
 
@@ -16,9 +18,23 @@ final class MenuPresenter {
     
     // MARK: - PrivateProperties
     
+    private let sceneBuildManager: Buildable
+    
     // MARK: - Initializer
+    
+    init(sceneBuildManager: Buildable) {
+        self.sceneBuildManager = sceneBuildManager
+    }
 }
 
 //MARK: - MenuPresenterExtension
 
-extension MenuPresenter: MenuPresenterProtocol {}
+extension MenuPresenter: MenuPresenterProtocol {
+    func startButtonPressed() {
+        let mainViewController = sceneBuildManager.buildMainScreen()
+        viewController?.navigationController?.pushViewController(
+            mainViewController,
+            animated: true
+        )
+    }
+}

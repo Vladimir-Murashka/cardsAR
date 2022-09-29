@@ -38,6 +38,7 @@ private extension MainViewController {
     func setupViewController() {
         addSubViews()
         setupConstraints()
+        navigationController?.isNavigationBarHidden = true
     }
     
     func addSubViews() {}
