@@ -19,15 +19,14 @@ final class MenuViewController: UIViewController {
     
     private let imageViewBackgroundScreen: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "menuBackground")
+        imageView.backgroundColor = .black
+        imageView.image = UIImage(named: "mainBackground")
         imageView.contentMode = .scaleAspectFill
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-
+    
     private lazy var startButton: UIButton = {
         let button = UIButton(type: .system)
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(
             "Начать",
             for: .normal
@@ -71,13 +70,16 @@ extension MenuViewController: MenuViewProtocol {}
 
 private extension MenuViewController {
     func setupViewController() {
+        navigationController?.isNavigationBarHidden = true
         addSubViews()
         setupConstraints()
     }
     
     func addSubViews() {
-        view.addSubview(imageViewBackgroundScreen)
-        view.addSubview(startButton)
+        view.addSubviews(
+            imageViewBackgroundScreen,
+            startButton
+        )
     }
     
     func setupConstraints() {
@@ -117,5 +119,3 @@ private extension MenuViewController {
         ])
     }
 }
-
-
